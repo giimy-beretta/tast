@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>สุขสันต์วันเกิดน 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive;
+      background-color: #ffe6f0;
+      color: #ff66b2;
+      text-align: center;
+    }
+
+    header {
+      padding: 20px;
+      font-size: 2em;
+      font-weight: bold;
+    }
+
+    nav {
+      margin: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    nav button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #ff99cc;
+      color: white;
+      border-radius: 20px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    .page {
+      display: none;
+      padding: 20px;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .letter {
+      display: flex;
+      justify-content: center;
+      margin-top: 4%;
+    }
+
+    .envelope {
+      position: relative;
+      width: 80vw;
+      max-width: 300px;
+      height: 180px;
+      background: #fff0f5;
+      border: 2px solid #ff99cc;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .envelope:hover {
+      transform: scale(1.05) rotate(-1deg);
+    }
+
+    .flap {
+      position: absolute;
+      top: -20px;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: #ffb6c1;
+      clip-path: polygon(0 0, 50% 100%, 100% 0);
+      transition: transform 0.4s ease;
+    }
+
+    .envelope:hover .flap {
+      transform: translateY(-10px) rotateX(180deg);
+    }
+
+    .body {
+      padding: 20px;
+      font-size: 1em;
+      color: #d63384;
+    }
+
+    .paper {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) scaleY(0);
+      width: 90%;
+      background: #fff;
+      border: 2px dashed #ff99cc;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 5px 10px rgba(255, 192, 203, 0.3);
+      color: #ff66b2;
+      transition: transform 0.5s ease;
+      transform-origin: top;
+      z-index: -1;
+    }
+
+    .envelope.open .paper {
+      transform: translateX(-50%) scaleY(1);
+    }
+
+    .slider {
+      overflow: hidden;
+      width: 100%;
+      max-width: 800px;
+      margin: auto;
+      position: relative;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .slide-item {
+      flex: 0 0 100%;
+      width: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .image-box {
+      display: inline-block;
+      border: 3px solid #ff99cc;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #ffe6f0;
+    }
+
+    .image-box img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .caption {
+      margin-top: 10px;
+      font-size: 1em;
+      color: black;
+    }
+
+    .controls {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+
+    .control-left,
+    .control-right {
+      background-color: rgba(255, 105, 180, 0.6);
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 2em;
+      color: white;
+      transition: background-color 0.3s;
+    }
+
+    .control-left:hover,
+    .control-right:hover {
+      background-color: #ff99cc;
+    }
+
+    @media screen and (max-width: 600px) {
+  header {
+    font-size: 1.5em;
+  }
+
+  nav button {
+    padding: 8px 16px;
+    font-size: 0.9em;
+  }
+
+  .slider {
+    max-width: 100%;
+  }
+
+  .image-box {
+    width: 100%;
+  }
+
+  .image-box img {
+    width: 100%;
+    height: auto;
+    max-height: unset;
+  }
+
+  .slides {
+    flex-direction: row;
+  }
+
+  .control-left,
+  .control-right {
+    font-size: 1.5em;
+    padding: 5px;
+  }
+
+  .controls {
+    top: auto;
+    bottom: 10px;
+    transform: none;
+  }
+}
+
+
+    /* .to_you {
+      max-width: 700px;
+      margin: 0 auto 30px auto;
+      padding: 20px;
+      background-color: #fff0f5;
+      border: 2px solid #ff99cc;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2);
+      font-size: 1.1em;
+      color: #d63384;
+      text-align: left;
+      line-height: 1.8;
+    } */
+
+    .comment {
+      max-width: 700px;
+      margin: 0 auto 50px auto;
+      padding: 20px;
+      background-color: #fff0f5;
+      border: 2px dashed #ff99cc;
+      border-radius: 15px;
+      box-shadow: 0 5px 10px rgba(255, 105, 180, 0.15);
+      font-size: 1em;
+      color: #d63384;
+      text-align: center;
+    }
+
+    .comment form textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 2px solid #ff99cc;
+      resize: vertical;
+      font-family: inherit;
+      font-size: 1em;
+    }
+
+    .comment form button {
+      background-color: #ff66b2;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      font-size: 1em;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .comment form button:hover {
+      background-color: #ff99cc;
+    }
+
+  </style>
+</head>
+<body>
+  <header>สุขสันต์วันเกิดนะค้าบบคนเก่งง 🎂💗</header>
+
+  <nav>
+    <button onclick="showPage(0)">หน้าแรก</button>
+    <button onclick="showPage(1)">หน้าสอง</button>
+    <button onclick="showPage(2)">หน้าสาม</button>
+  </nav>
+
+  <div class="page active">
+    <h2>ตัวเล็กลองกดจดหมายดูสิ 💬 <br> ⬇️⬇️⬇️⬇️</h2>
+    <div class="letter">
+      <div class="envelope" onclick="toggleLetter()">
+        <div class="flap"></div>
+        <div class="body">
+          <p>ถึงคนพิเศษที่สุดในวันนี้ 💌 <br> 💖 </p>
+        </div>
+        <div class="paper" id="paperNote">
+          <p>
+            สุขสันต์วันเกิดนะคะน้องที่น่ารักของพี่ 🎂💕 <br>
+            ถึงจะอยู่ไกลแค่ไหน แต่ความคิดถึงยังส่งไปหาตลอดเลยน้า 🌈 <br>
+            ขอให้น้องมีความสุขมากๆ สมหวังในทุกๆ ความฝันที่ตั้งใจไว้ ✨ <br>
+            แล้วไว้เจอกันในวันที่เหมาะสมเนอะ พี่จะรอวันนั้นอย่างใจจดใจจ่อเลยน้า 🎉💌
+          </p>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page">
+    <h2>พี่มีภาพน่ารักๆ ของน้องที่อยากให้ดู 📸</h2>
+    <div class="slider">
+      <div class="slides">
+        <div class="slide-item">
+          <div class="image-box" onclick="showFullImage('IMG/ตอนตัดหนา้ม้า.jpg')">
+            <img src="IMG/ตอนตัดหนา้ม้า.jpg" alt="รูป 1">
+            <div class="caption">น้องมันตัดผมละมันบ่นนะ แต่พี่ว่าน่ารักดีออกก 🫢</div>
+          </div>
+        </div>
+        <div class="slide-item">
+          <div class="image-box">
+            <img src="IMG/เที่ยวไหนไม่รู้แต่เเต่งตัวน่ารักเวอร์.jpg" alt="รูป 2">
+            <div class="caption">ไปเที่ยวไหนก็ไม่รู้ลลแต่ที่รู้ๆแต่งตัวน่ารักมากกก 💓</div>
+          </div>
+        </div>
+        <div class="slide-item">
+          <div class="image-box">
+            <img src="IMG/อันนี้โดนใจ.jpg" alt="รูป 3">
+            <div class="caption">รูปนี้คือแบบ เอาไปเต็ม 10 เลยย โดนใจฟุดๆ =//=</div>
+          </div>
+        </div>
+        <div class="slide-item">
+          <div class="image-box">
+            <img src="IMG/โดนใจอีกแล้ว.jpg" alt="รูป 4">
+            <div class="caption">รูปนี้ด้วยน่าร๊ากกก เหมือนโดนโขมยหัวใจเลยย 55555 =//=</div>
+          </div>
+        </div>
+        <div class="slide-item">
+          <div class="image-box">
+            <img src="IMG/เพื่อนถ่ายให้.jpg" alt="รูป 5">
+            <div class="caption">แก๊งนี้มีแต่คนถ่ายรูปสวยป่ะครับบบ 🫶</div>
+          </div>
+        </div>
+        <div class="slide-item">
+          <div class="image-box">
+            <img src="IMG/อันนี้ตอนไปทัศศึกษารึป้าวน้าา.jpg" alt="รูป 6">
+            <div class="caption">อันนี้น่าจะตอนไปทัศนศึกษาแหละเนอะะ 🫶</div>
+          </div>
+        </div>
+      </div>
+      <div class="controls">
+        <span class="control-left" onclick="moveSlide(-1)">❮</span>
+        <span class="control-right" onclick="moveSlide(1)">❯</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page">
+    <h2>จากใจพี่ถึงน้อง 💬</h2>
+    <div class="to_you">
+      <p> พี่ขอบคุณมากน้าที่มาคุยมาเล่นกับพี่จะบอกว่าพี่มีความสุขมากก ไม่เหงาเลยยคุยกับน้องแล้วโครตจะสบายใจมากๆๆๆๆๆๆๆ <br> web นี้พี่ตั้งใจทำมากก นั่งงงกับ coding ตั้งนานเพราะพี่พึ่งเริ่มศึกษา อาจจะไม่ได้สวยไรมากแต่พี่ทำด้วยใจน้าา <br> มีไรก็มาปรึกษาพี่ได้เสมอเลยน้าาา <br> รักน้องเสมอ Lovee❤️</p>
+    </div>
+
+    <div class="comment">
+      <h2>มีไรจะ comment ป้าวว ตัวเล็ก 💌</h2>
+      <form action="https://formsubmit.co/cchut50433@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="ความคิดเห็นจากเว็บสุขสันต์วันเกิด!">
+        <input type="hidden" name="_captcha" value="false">
+        <textarea name="message" rows="5" placeholder="พิมพ์ข้อความตรงนี้เลยน้า..." required></textarea>
+        <button type="submit">ส่งข้อความถึงพี่เลย 💖</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="fullImageModal" style="display:none;">
+    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center;">
+      <img id="fullImage" src="" style="max-width: 90%; max-height: 90%;">
+      <span onclick="closeFullImage()" style="position: absolute; top: 10px; right: 10px; font-size: 2em; color: white; cursor: pointer;">×</span>
+    </div>
+  </div>
+
+  <script>
+    const pages = document.querySelectorAll('.page');
+
+    function showPage(index) {
+      pages.forEach((page, i) => {
+        page.classList.toggle('active', i === index);
+      });
+    }
+
+    function toggleLetter() {
+      const envelope = document.querySelector('.envelope');
+      envelope.classList.toggle('open');
+    }
+
+    let slideIndex = 0;
+    function moveSlide(step) {
+      const slides = document.querySelector('.slides');
+      const totalSlides = document.querySelectorAll('.slide-item').length;
+      slideIndex = (slideIndex + step + totalSlides) % totalSlides;
+      slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+    }
+
+    function showFullImage(imageSrc) {
+      const modal = document.getElementById('fullImageModal');
+      const fullImage = document.getElementById('fullImage');
+      fullImage.src = imageSrc;
+      modal.style.display = 'flex';
+    }
+
+    function closeFullImage() {
+      document.getElementById('fullImageModal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
